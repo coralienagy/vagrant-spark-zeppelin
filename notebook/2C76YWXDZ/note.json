@@ -426,8 +426,8 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md \n\n## V. Creation and evaluation of models\n\nWe are now ready to try out some of the Binary Classification Algorithms available in the new ML Pipelines API.\n\nThese are the general steps we will take to build our models:\n- Create initial model using the training set\n- Tune parameters with a `ParamGrid` and 5-fold Cross Validation\n- Evaluate the best model obtained from the Cross Validation using the test set\n\nWe will be using the `BinaryClassificationEvaluator` to evaluate our models. The default metric used here is [areaUnderROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve).",
-      "dateUpdated": "Feb 3, 2017 9:32:54 AM",
+      "text": "%md \n\n## V. Creation of models\n\nWe are now ready to try out some of the Binary Classification Algorithms available in the new ML Pipelines API.\n\nWe are going to try:\n- Logistic regression\n- Decision trees\n- Random forest\n\nThese are the general steps we will take to build our models:\n- Create initial model using the training set\n- Tune parameters with a `ParamGrid` and 5-fold Cross Validation\n- Evaluate the best model obtained from the Cross Validation using the test set\n\nWe will be using the `BinaryClassificationEvaluator` to evaluate our models. The default metric used here is [areaUnderROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve).",
+      "dateUpdated": "Feb 3, 2017 9:40:54 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -440,7 +440,7 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala",
+        "editorMode": "ace/mode/markdown",
         "editorHide": true
       },
       "settings": {
@@ -452,11 +452,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch2\u003eV. Creation and evaluation of models\u003c/h2\u003e\n\u003cp\u003eWe are now ready to try out some of the Binary Classification Algorithms available in the new ML Pipelines API.\u003c/p\u003e\n\u003cp\u003eThese are the general steps we will take to build our models:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCreate initial model using the training set\u003c/li\u003e\n\u003cli\u003eTune parameters with a \u003ccode\u003eParamGrid\u003c/code\u003e and 5-fold Cross Validation\u003c/li\u003e\n\u003cli\u003eEvaluate the best model obtained from the Cross Validation using the test set\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWe will be using the \u003ccode\u003eBinaryClassificationEvaluator\u003c/code\u003e to evaluate our models. The default metric used here is \u003ca href\u003d\"https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve\"\u003eareaUnderROC\u003c/a\u003e.\u003c/p\u003e\n"
+        "msg": "\u003ch2\u003eV. Creation of models\u003c/h2\u003e\n\u003cp\u003eWe are now ready to try out some of the Binary Classification Algorithms available in the new ML Pipelines API.\u003c/p\u003e\n\u003cp\u003eWe are going to try:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eLogistic regression\u003c/li\u003e\n\u003cli\u003eDecision trees\u003c/li\u003e\n\u003cli\u003eRandom forest\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThese are the general steps we will take to build our models:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCreate initial model using the training set\u003c/li\u003e\n\u003cli\u003eTune parameters with a \u003ccode\u003eParamGrid\u003c/code\u003e and 5-fold Cross Validation\u003c/li\u003e\n\u003cli\u003eEvaluate the best model obtained from the Cross Validation using the test set\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWe will be using the \u003ccode\u003eBinaryClassificationEvaluator\u003c/code\u003e to evaluate our models. The default metric used here is \u003ca href\u003d\"https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve\"\u003eareaUnderROC\u003c/a\u003e.\u003c/p\u003e\n"
       },
       "dateCreated": "Feb 3, 2017 9:31:43 AM",
-      "dateStarted": "Feb 3, 2017 9:32:50 AM",
-      "dateFinished": "Feb 3, 2017 9:32:50 AM",
+      "dateStarted": "Feb 3, 2017 9:40:52 AM",
+      "dateFinished": "Feb 3, 2017 9:40:52 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
