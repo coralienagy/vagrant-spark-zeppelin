@@ -251,7 +251,7 @@
     {
       "title": "Nombre d\u0027employés par occupation avec le même niveau d\u0027éducation selon le sexe et la race de l\u0027employé ",
       "text": "%sql SELECT * FROM dataset WHERE education_num \u003d 13 LIMIT 100",
-      "dateUpdated": "Feb 17, 2017 3:36:40 PM",
+      "dateUpdated": "Feb 17, 2017 3:43:03 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -472,7 +472,7 @@
     {
       "title": "Detail columns to deal with",
       "text": "val categoricalCols \u003d Seq(\"workclass\", \"education\", \"marital_status\", \"occupation\", \"relationship\", \"race\", \"sex\", \"native_country\")\nval numericCols \u003d Seq(\"age\", \"fnlwgt\", \"education_num\", \"capital_gain\", \"capital_loss\", \"hours_per_week\")",
-      "dateUpdated": "Feb 7, 2017 12:55:42 PM",
+      "dateUpdated": "Feb 17, 2017 3:50:24 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -500,9 +500,43 @@
         "msg": "\ncategoricalCols: Seq[String] \u003d List(workclass, education, marital_status, occupation, relationship, race, sex, native_country)\n\nnumericCols: Seq[String] \u003d List(age, fnlwgt, education_num, capital_gain, capital_loss, hours_per_week)\n"
       },
       "dateCreated": "Feb 6, 2017 2:31:24 AM",
-      "dateStarted": "Feb 7, 2017 12:55:53 PM",
-      "dateFinished": "Feb 7, 2017 12:55:56 PM",
+      "dateStarted": "Feb 17, 2017 3:50:24 PM",
+      "dateFinished": "Feb 17, 2017 3:50:25 PM",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "categoricalCols.flatMap(s \u003d\u003e\n    Seq(s, s+\"index\")\n  )\n  \nimport org.apache.spark.ml.feature.{OneHotEncoder, StringIndexer}\nimport org.apache.spark.ml.{Pipeline, PipelineModel}\n\nval stringIndexer \u003d new StringIndexer()\n  .setInputCol(\"s\")\n  .setOutputCol(\"s\")\nval oneHotEncoder \u003d new OneHotEncoder()\n  .setInputCol(stringIndexer.getOutputCol)\n  .setOutputCol(stringIndexer.getInputCol + \"ClassVec\")\n  \nval label_stringIdx \u003d new StringIndexer()\n    .setInputCol(\"income\")\n    .setOutputCol(\"label\")\n\nval stages \u003d  Seq(stringIndexer, oneHotEncoder) ++ Seq(label_stringIdx) // concatenate 2 sequences of stages\nval pipeline \u003d new Pipeline()\n  .setStages(stages.toArray)\n\nval pipelineModel \u003d pipeline.fit(dataset)\npipelineModel.transform(dataset).show()",
+      "dateUpdated": "Feb 17, 2017 4:01:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1487346646901_-353473191",
+      "id": "20170217-155046_667039077",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "\nres7: Seq[String] \u003d List(workclass, workclassindex, education, educationindex, marital_status, marital_statusindex, occupation, occupationindex, relationship, relationshipindex, race, raceindex, sex, sexindex, native_country, native_countryindex)\n\nimport org.apache.spark.ml.feature.{OneHotEncoder, StringIndexer}\n\nimport org.apache.spark.ml.{Pipeline, PipelineModel}\n\nstringIndexer: org.apache.spark.ml.feature.StringIndexer \u003d strIdx_0ab499eeb25f\n\noneHotEncoder: org.apache.spark.ml.feature.OneHotEncoder \u003d oneHot_469b4e760909\n\nlabel_stringIdx: org.apache.spark.ml.feature.StringIndexer \u003d strIdx_244c46e7b3d0\n\nstages: Seq[org.apache.spark.ml.PipelineStage with org.apache.spark.ml.param.shared.HasOutputCol with org.apache.spark.ml.param.shared.HasInputCol with org.apache.spark.ml.util.DefaultParamsWritable{def copy(extra: org.apache.spark.ml.param.ParamMap): org.apache.spark.ml.PipelineStage with org.apache.spark.ml.param.shared.HasOutputCol with org.apache.spark.ml.param.shared.HasInputCol with org.apache.spark.ml.util.DefaultParamsWritable{def copy(extra: org.apache.spark.ml.param.ParamMap): org.apache.spark.ml.PipelineStage with org.apache.spark.ml.param.shared.HasOutputCol with org.apache.spark.ml.param.shared.HasInputCol with org.apache.spark.ml.util.DefaultParamsWritable}}] \u003d List(strIdx_0ab499eeb25f, oneHot_469b4e760909, strIdx_244c46e7b3d0)\n\npipeline: org.apache.spark.ml.Pipeline \u003d pipeline_35541bb5e7c4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\njava.lang.IllegalArgumentException: Field \"s\" does not exist.\n  at org.apache.spark.sql.types.StructType$$anonfun$apply$1.apply(StructType.scala:228)\n  at org.apache.spark.sql.types.StructType$$anonfun$apply$1.apply(StructType.scala:228)\n  at scala.collection.MapLike$class.getOrElse(MapLike.scala:128)\n  at scala.collection.AbstractMap.getOrElse(Map.scala:59)\n  at org.apache.spark.sql.types.StructType.apply(StructType.scala:227)\n  at org.apache.spark.ml.feature.StringIndexerBase$class.validateAndTransformSchema(StringIndexer.scala:43)\n  at org.apache.spark.ml.feature.StringIndexer.validateAndTransformSchema(StringIndexer.scala:66)\n  at org.apache.spark.ml.feature.StringIndexer.transformSchema(StringIndexer.scala:99)\n  at org.apache.spark.ml.Pipeline$$anonfun$transformSchema$4.apply(Pipeline.scala:180)\n  at org.apache.spark.ml.Pipeline$$anonfun$transformSchema$4.apply(Pipeline.scala:180)\n  at scala.collection.IndexedSeqOptimized$class.foldl(IndexedSeqOptimized.scala:57)\n  at scala.collection.IndexedSeqOptimized$class.foldLeft(IndexedSeqOptimized.scala:66)\n  at scala.collection.mutable.ArrayOps$ofRef.foldLeft(ArrayOps.scala:186)\n  at org.apache.spark.ml.Pipeline.transformSchema(Pipeline.scala:180)\n  at org.apache.spark.ml.PipelineStage.transformSchema(Pipeline.scala:70)\n  at org.apache.spark.ml.Pipeline.fit(Pipeline.scala:132)\n  ... 46 elided\n"
+      },
+      "dateCreated": "Feb 17, 2017 3:50:46 PM",
+      "dateStarted": "Feb 17, 2017 4:01:55 PM",
+      "dateFinished": "Feb 17, 2017 4:01:57 PM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
